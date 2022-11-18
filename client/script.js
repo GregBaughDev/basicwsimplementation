@@ -1,9 +1,7 @@
-const websocket = new WebSocket("ws://localhost:9000/greg")
+const websocket = new WebSocket("ws://localhost:8887")
 
 websocket.addEventListener('open', () => {
-    setInterval(() => {
-        websocket.send('')
-    }, 30000)
+    websocket.send('Client connected')
 })
 
 document.getElementById('sendMessage').addEventListener('click', () => {
@@ -12,5 +10,5 @@ document.getElementById('sendMessage').addEventListener('click', () => {
 })
 
 websocket.onmessage = (e) => {
-    console.log(e.data)
+    document.getElementById('receivedMessage').textContent = e.data
 }
